@@ -12,7 +12,7 @@ public abstract class Parser {
 
 
     private Lexer input;
-    protected Token lookhead;
+    protected Token lookahead;
 
     public Parser(Lexer input) {
         this.input = input;
@@ -20,16 +20,15 @@ public abstract class Parser {
     }
 
     protected void match(int x) {
-        if (lookhead.type == x) {
+        if (lookahead.type == x) {
             consume();
             return;
         }
         throw new RuntimeException("expecting " + TokenType.tokenNames[x] +
-            " ; found " + lookhead.text);
+            " ; found " + lookahead.text);
     }
 
     protected void consume() {
-        lookhead = input.nextToken();
-        System.out.println(lookhead);
+        lookahead = input.nextToken();
     }
 }

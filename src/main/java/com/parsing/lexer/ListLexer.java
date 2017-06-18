@@ -27,6 +27,9 @@ public class ListLexer extends Lexer {
                 case ']':
                     consume();
                     return new Token(TokenType.RBRACK, "]");
+                case '=':
+                    consume();
+                    return new Token(TokenType.EQUALS, "=");
                 default:
                     if (isLETTER()) {
                         return NAME();

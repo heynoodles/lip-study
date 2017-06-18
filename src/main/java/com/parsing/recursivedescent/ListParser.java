@@ -7,10 +7,12 @@ import com.parsing.lexer.TokenType;
 /**
  * @author gaoxin.wei
  * LL(1)
- * 语法如下
+ * 语法如下：
+ * -----------------------------------------
  * list : '[' elements ']' ;
  * elements : element (',' element)* ;
  * element: NAME | list ;
+ * -----------------------------------------
  */
 public class ListParser extends Parser {
 
@@ -26,16 +28,16 @@ public class ListParser extends Parser {
 
     private void elements() {
         element();
-        while (lookhead.type == TokenType.COMMA) {
+        while (lookahead.type == TokenType.COMMA) {
             match(TokenType.COMMA);
             element();
         }
     }
 
     private void element() {
-        if (lookhead.type == TokenType.NAME) {
+        if (lookahead.type == TokenType.NAME) {
             match(TokenType.NAME);
-        } else if (lookhead.type == TokenType.LBRACK) {
+        } else if (lookahead.type == TokenType.LBRACK) {
             list();
         }
     }
