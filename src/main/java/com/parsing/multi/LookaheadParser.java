@@ -42,15 +42,12 @@ public class LookaheadParser extends Parser {
             match(TokenType.NAME);
             match(TokenType.EQUALS);
             match(TokenType.NAME);
-            return;
         } else if (LT(1).type == TokenType.NAME) {
             match(TokenType.NAME);
-            return;
         } else if (LT(1).type == TokenType.LBRACK) {
             list();
-            return;
-        }
-        throw new Error("parse element error");
+        } else
+            throw new Error("parse element error");
     }
 
     public static void main(String[] args) {
