@@ -24,5 +24,5 @@ public abstract class HeteroAST {
         this.token = token;
     }
 
-    public abstract void visit(GossipVisitor visitor);
+    public abstract Object visit(GossipVisitor visitor);
 }

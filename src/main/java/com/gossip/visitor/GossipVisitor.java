@@ -1,6 +1,7 @@
 package com.gossip.visitor;
 
 import com.gossip.ast.AddNode;
+import com.gossip.ast.HeteroAST;
 import com.gossip.ast.IntNode;
 
 /**
@@ -8,7 +9,5 @@ import com.gossip.ast.IntNode;
  */
 public interface GossipVisitor {
 
-    void visit(IntNode intNode);
-
-    void visit(AddNode addNode);
+    Object visit(HeteroAST node);
 }

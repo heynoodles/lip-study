@@ -17,9 +17,8 @@ public class AddNode extends HeteroAST {
         this.right = right;
     }
 
-
-    public void visit(GossipVisitor visitor) {
-        visitor.visit(this);
+    public Object visit(GossipVisitor visitor) {
+        return visitor.visit(this);
     }
 
     public HeteroAST getLeft() {

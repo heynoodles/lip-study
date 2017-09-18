@@ -12,7 +12,7 @@ public class IntNode extends HeteroAST {
         super(token);
     }
 
-    public void visit(GossipVisitor visitor) {
-        visitor.visit(this);
+    public Object visit(GossipVisitor visitor) {
+        return visitor.visit(this);
     }
 }
