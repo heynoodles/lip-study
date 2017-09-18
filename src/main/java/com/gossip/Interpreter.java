@@ -14,7 +14,7 @@ public class Interpreter {
         String input = "(print ( + (+ 11 3) 2))";
         GossipLexer lexer = new GossipLexer(input);
         GossipParser parser = new GossipParser(lexer, 2);
-        HeteroAST expr = parser.s_expr();
+        HeteroAST expr = parser.parse();
         expr.visit(new EvalVisitor());
     }
 
