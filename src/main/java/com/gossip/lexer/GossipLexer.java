@@ -43,7 +43,9 @@ public class GossipLexer extends Lexer {
                 default:
                     if (isDigit()) {
                        return INT();
-                    } else if (isLETTER()) {
+                    } if (isPrint()) {
+                        return new Token(TokenType.PRINT, "print");
+                    }else if (isLETTER()) {
                         return NAME();
                     } else {
                         throw new Error("invalid character: " + c);
@@ -51,6 +53,20 @@ public class GossipLexer extends Lexer {
             }
         }
         return new Token(EOF_TYPE, "<EOF>");
+    }
+
+
+    private boolean isPrint() {
+        try {
+            match('p');
+            match('r');
+            match('i');
+            match('n');
+            match('t');
+            return true;
+        } catch (Error error) {
+            return false;
+        }
     }
 
     private Token INT() {

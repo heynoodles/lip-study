@@ -14,9 +14,11 @@ public class TokenType {
     public static int PAREN_BEGIN = 8;
     public static int PAREN_END = 9;
     public static int INT = 10;
+    public static int PRINT = 11;
 
 
     public static String[] tokenNames = {
-        "n/a", "<EOF>", "NAME", "COMMA", "LBRACK", "RBRACK", "EQUALS", "ADD", "PAREN_BEGIN", "PAREN_END", "INT"
+        "n/a", "<EOF>", "NAME", "COMMA", "LBRACK", "RBRACK", "EQUALS", "ADD", "PAREN_BEGIN", "PAREN_END", "INT",
+            "PRINT"
     };
 }

@@ -3,6 +3,7 @@ package com.gossip.visitor;
 import com.gossip.ast.AddNode;
 import com.gossip.ast.HeteroAST;
 import com.gossip.ast.IntNode;
+import com.gossip.ast.PrintNode;
 
 /**
  * Created by gaoxinwei on 2017/9/18.
@@ -19,11 +20,19 @@ public class EvalVisitor implements GossipVisitor {
         return leftVal + rightVal;
     }
 
+    private Object PRINT(PrintNode printNode) {
+        Object val = printNode.getParam().visit(this);
+        System.out.println(val);
+        return val;
+    }
+
     public Object visit(HeteroAST node) {
         if (node instanceof IntNode) {
            return INT((IntNode)node);
         } else if (node instanceof AddNode) {
             return ADD((AddNode)node);
+        } else if (node instanceof PrintNode) {
+            return PRINT((PrintNode)node);
         } else {
             throw new Error("未知节点");
         }
