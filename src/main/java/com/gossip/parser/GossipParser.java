@@ -26,31 +26,36 @@ public class GossipParser extends Parser {
         super(lexer, k);
     }
 
-    public HeteroAST s_expr() {
+    private HeteroAST s_expr() {
         if (LT(1).type == TokenType.INT) {
             HeteroAST intNode = new IntNode(LT(1));
             match(TokenType.INT);
             return intNode;
         } else if (LT(1).type == TokenType.PAREN_BEGIN) {
-            match(TokenType.PAREN_BEGIN);
-            if (LT(1).type == TokenType.ADD) {
-                match(TokenType.ADD);
-                HeteroAST left = s_expr();
-                HeteroAST right = s_expr();
-                match(TokenType.PAREN_END);
-                return new AddNode(new Token(TokenType.ADD, "+"), left, right);
-            } else if (LT(1).type == TokenType.PRINT) {
-                match(TokenType.PRINT);
-                HeteroAST param  = s_expr();
-                match(TokenType.PAREN_END);
-                return new PrintNode(new Token(TokenType.PRINT, "print"), param);
-            } else {
-                throw new Error("parse element error");
-            }
+           return list();
         } else
             throw new Error("parse element error");
     }
 
+    private HeteroAST list() {
+        match(TokenType.PAREN_BEGIN);
+        if (LT(1).type == TokenType.ADD) {
+            match(TokenType.ADD);
+            HeteroAST left = s_expr();
+            HeteroAST right = s_expr();
+            match(TokenType.PAREN_END);
+            return new AddNode(new Token(TokenType.ADD, "+"), left, right);
+        } else if (LT(1).type == TokenType.PRINT) {
+            match(TokenType.PRINT);
+            HeteroAST param  = s_expr();
+            match(TokenType.PAREN_END);
+            return new PrintNode(new Token(TokenType.PRINT, "print"), param);
+        } else {
+            throw new Error("parse element error");
+        }
+    }
+
+    // 入口
     public HeteroAST parse() {
         return s_expr();
     }
